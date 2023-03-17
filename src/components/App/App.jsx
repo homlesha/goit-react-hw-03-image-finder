@@ -57,7 +57,6 @@ export class App extends Component {
       if (images.hits.length === 0) {
         toast.error('Нема фото!');
       }
-      console.log(images);
       this.setState(prev => ({
         images: [...prev.images, ...images.hits],
       }));
