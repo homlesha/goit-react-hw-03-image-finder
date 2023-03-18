@@ -9,7 +9,7 @@ const Button = ({onClick}) => {
 }
 
 Button.propTypes = {
-  onHandleClick: PropTypes.func.isRequired,
+  onClick: PropTypes.func.isRequired,
 };
 
 export default Button

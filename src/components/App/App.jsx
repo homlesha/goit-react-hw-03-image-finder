@@ -13,14 +13,18 @@ export class App extends Component {
   state = {
     images: [],
     page: 1,
-    searchName: '',
+    searchImage: '',
+    largeImage: '',
     isLoading: false,
     showModal: false,
-    largeImage: '',
     isVisible: false,
   };
-  handleSearchFormSubmit = searchName => {
-    this.setState({ searchName });
+  handleSearchFormSubmit = searchImage => {
+    this.setState({ searchImage });
+    this.setState({
+      images: [],
+      page: 1,
+    });
   };
 
   loadMoreButton = () => {
@@ -38,14 +42,8 @@ export class App extends Component {
   };
 
   async componentDidUpdate(prevProps, prevState) {
-    const prevImage = prevState.searchName;
-    const currentImage = this.state.searchName;
-    if (prevImage !== currentImage) {
-      this.setState({
-        images: [],
-        page: 1,
-      });
-    }
+    const prevImage = prevState.searchImage;
+    const currentImage = this.state.searchImage;
     if (currentImage !== prevImage || this.state.page !== prevState.page) {
       this.setState({ isLoading: true });
       const images = await fetchImages(currentImage, this.state.page);
